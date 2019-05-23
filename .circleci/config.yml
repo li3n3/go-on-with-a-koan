@@ -11,6 +11,7 @@ jobs:
           command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
           environment:
             DOCKERIZE_VERSION: v0.3.0
+            DATABASE_URL: "postgres://ubuntu@localhost:5432/db_name"
       - run:
           name: Wait for db # If no database is found in 1 minute the job will fail.
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
